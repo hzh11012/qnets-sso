@@ -25,7 +25,10 @@
     "dependencies": {
         "@koa/cors": "^5.0.0",
         "@prisma/client": "^6.4.1",
+        "basic-auth": "^2.0.1",
+        "dotenv": "^16.4.7",
         "ioredis": "^5.5.0",
+        "jsonwebtoken": "^9.0.2",
         "koa": "^2.15.4",
         "koa-bodyparser": "^4.4.1",
         "koa-onerror": "^5.0.1",

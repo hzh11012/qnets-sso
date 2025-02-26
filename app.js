@@ -1,20 +1,22 @@
 require('module-alias/register');
 
 const Koa = require('koa');
-const onerror = require('koa-onerror');
+const {onerror} = require('koa-onerror');
 const parser = require('koa-bodyparser');
 const cors = require('@koa/cors');
 const ratelimit = require('koa-ratelimit');
 const InitManager = require('@core/init');
 const errorConf = require('@middlewares/exception');
-const {createServer} = require('http');
 const dotenv = require('dotenv');
+const {createServer} = require('http');
 
 const envFile =
     process.env.NODE_ENV === 'production'
         ? '.env.production'
         : '.env.development';
 dotenv.config({path: envFile});
+
+const redis = require('@core/redis');
 
 const app = new Koa();
 
@@ -24,20 +26,19 @@ app.use(parser());
 
 // 接口调用频率限制（Rate-Limiting）
 // https://github.com/koajs/ratelimit
-const db = new Map();
 app.use(
     ratelimit({
-        driver: 'memory',
-        db: db,
+        driver: 'redis',
+        db: redis.redis,
         duration: 60000,
         errorMessage: '访问频率过高，请稍后再试',
-        id: ctx => ctx.realIp,
+        id: ctx => ctx.ip,
         headers: {
             remaining: 'Rate-Limit-Remaining',
             reset: 'Rate-Limit-Reset',
             total: 'Rate-Limit-Total'
         },
-        max: 99,
+        max: 50,
         disableHeader: false,
         whitelist: () => {},
         blacklist: () => {}
