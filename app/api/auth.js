@@ -1,7 +1,6 @@
 const Router = require('koa-router');
 const {LoginValidator, PhoneValidator} = require('@validators/sso');
-const {Resolve, Forbidden, AuthFailed} = require('@core/http-exception');
-const jwt = require('jsonwebtoken');
+const {Resolve} = require('@core/http-exception');
 const smsService = require('@service/sms');
 const authService = require('@service/auth');
 const res = new Resolve();

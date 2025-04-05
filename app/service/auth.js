@@ -14,7 +14,7 @@ class AuthService {
         await SmsManager.delCode(phone);
 
         const [err, account] = await AccountDao.findOrCreate(phone);
-        if (err) throw new HttpException(`用户注册失败：${err.msg}`);
+        if (err) throw new HttpException();
 
         const tokens = await this.generateTokens(account, ctx.ip);
         CookieHelper.setTokens(ctx, tokens);
