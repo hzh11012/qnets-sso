@@ -2,7 +2,7 @@
     "name": "qnets-sso",
     "version": "1.0.0",
     "author": "Qnets",
-    "description": "Qnets Blog 登录服务端",
+    "description": "Qnets SSO 登录服务端",
     "main": "app.js",
     "scripts": {
         "dev": "nodemon app.js",
