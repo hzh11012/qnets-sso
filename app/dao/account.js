@@ -1,7 +1,7 @@
 const prisma = require('@core/prisma');
 
 class AccountDao {
-    async findOrCreate(phone) {
+    static async findOrCreate(phone) {
         try {
             const account = await prisma.account.findUnique({
                 where: {phone}
@@ -20,4 +20,4 @@ class AccountDao {
     }
 }
 
-module.exports = new AccountDao();
+module.exports = AccountDao;

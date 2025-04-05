@@ -3,7 +3,7 @@ const {HttpException} = require('@core/http-exception');
 const redis = require('@core/redis');
 
 class SmsService {
-    async sendCode(phone) {
+    static async sendCode(phone) {
         try {
             const [code, maxAge] = await SmsManager.sendCode(phone);
             await redis.set(`sms:${phone}`, code, maxAge * 60);
@@ -13,4 +13,4 @@ class SmsService {
     }
 }
 
-module.exports = new SmsService();
+module.exports = SmsService;

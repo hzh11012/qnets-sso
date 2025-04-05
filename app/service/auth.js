@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const redis = require('@core/redis');
 
 class AuthService {
-    async login(phone, code, ctx) {
+    static async login(phone, code, ctx) {
         const verifyRes = await SmsManager.verifyCode(phone, code);
         if (!verifyRes) throw new AuthFailed('验证码错误');
         // 验证后清楚验证码
@@ -22,7 +22,7 @@ class AuthService {
         return tokens;
     }
 
-    async generateTokens(account, ip) {
+    static async generateTokens(account, ip) {
         const {id, phone} = account;
         const accessToken = generateToken({id, phone});
         const refreshToken = generateToken({id, phone, ip}, true);
@@ -35,7 +35,7 @@ class AuthService {
         return {accessToken, refreshToken};
     }
 
-    verifyToken(token) {
+    static verifyToken(token) {
         if (!token) throw new Forbidden('未携带令牌');
 
         try {
@@ -52,7 +52,7 @@ class AuthService {
         }
     }
 
-    async refreshTokens(token, ctx) {
+    static async refreshTokens(token, ctx) {
         if (!token) throw new Forbidden('未携带令牌');
 
         try {
@@ -81,9 +81,9 @@ class AuthService {
         }
     }
 
-    logout(ctx) {
+    static logout(ctx) {
         CookieHelper.clearTokens(ctx);
     }
 }
 
-module.exports = new AuthService();
+module.exports =  AuthService;
