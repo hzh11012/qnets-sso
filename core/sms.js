@@ -1,6 +1,5 @@
 const tencentCloud = require('tencentcloud-sdk-nodejs');
 const {randomNum} = require('@core/utils');
-const {HttpException} = require('@core/http-exception');
 const redis = require('@core/redis');
 
 const smsClient = tencentCloud.sms.v20210111.Client;
@@ -38,7 +37,7 @@ class SmsManager {
         return _code && _code === code;
     }
 
-    sendCode(phone, age) {
+    async sendCode(phone, age) {
         const code = randomNum(6);
         const maxAge = age || 5;
         const config = {
@@ -46,14 +45,9 @@ class SmsManager {
             TemplateParamSet: [code, String(maxAge)],
             PhoneNumberSet: [`+86${phone}`]
         };
-
-        this.client.SendSms(config, async err => {
-            if (err) throw new HttpException(`验证码发送失败: ${err.msg}`);
-            await redis.set(`sms:${phone}`, code, maxAge * 60);
-        });
+        await this.client.SendSms(config);
+        return [code, maxAge];
     }
 }
 
-module.exports = {
-    SmsManager: new SmsManager()
-};
+module.exports = new SmsManager();

@@ -5,4 +5,4 @@ const prisma = new PrismaClient({
     log: process.env.NODE_ENV === 'development' ? ['warn', 'error'] : undefined
 });
 
-export default prisma;
+module.exports = prisma;

@@ -11,7 +11,7 @@ module.exports = {
             ctx.body = {
                 ...baseResponse,
                 msg: err.msg,
-                errorCode: err.errorCode,
+                code: err.code,
                 ...(err.data && {data: err.data})
             };
             ctx.status = err.code;
@@ -20,7 +20,7 @@ module.exports = {
             ctx.body = {
                 ...baseResponse,
                 msg: err.errors?.[0]?.message || err.message,
-                errorCode: 99999
+                code: 500
             };
             ctx.status = 500;
         }

@@ -4,10 +4,6 @@
 /prisma/db.sqlite
 /prisma/db.sqlite-journal
 
-.env.production
-.env.development
-.env
-
 # production
 /build
 

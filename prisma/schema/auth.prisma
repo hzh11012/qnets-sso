@@ -2,17 +2,6 @@
 model Account {
     id     String   @id @default(ulid())
     phone  String   @unique @db.VarChar(11)
-    device Device[]
 
     createdAt DateTime @default(now())
-}
-
-// 设备表
-model Device {
-    id         String   @id @default(ulid())
-    accountId  String
-    deviceId   String   @unique
-    deviceName String
-    account    Account  @relation(fields: [accountId], references: [id])
-    lastAt     DateTime
 }

@@ -25,7 +25,6 @@
     "dependencies": {
         "@koa/cors": "^5.0.0",
         "@prisma/client": "^6.4.1",
-        "basic-auth": "^2.0.1",
         "dotenv": "^16.4.7",
         "ioredis": "^5.5.0",
         "jsonwebtoken": "^9.0.2",
@@ -46,6 +45,7 @@
         "@middlewares": "middlewares",
         "@api": "app/api",
         "@dao": "app/dao",
+        "@service": "app/service",
         "@validators": "app/validators"
     }
 }

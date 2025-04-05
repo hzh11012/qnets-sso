@@ -10,15 +10,11 @@ const errorConf = require('@middlewares/exception');
 const dotenv = require('dotenv');
 const {createServer} = require('http');
 
-const envFile =
-    process.env.NODE_ENV === 'production'
-        ? '.env.production'
-        : '.env.development';
-dotenv.config({path: envFile});
+dotenv.config({path: '.env'});
 
 const redis = require('@core/redis');
 
-const app = new Koa();
+const app = new Koa({proxy: true});
 
 app.use(cors());
 onerror(app, errorConf);
