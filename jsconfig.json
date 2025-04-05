@@ -6,7 +6,6 @@
             "@api/*": ["app/api/*"],
             "@dao/*": ["app/dao/*"],
             "@service/*": ["app/service/*"],
-            "@lib/*": ["app/lib/*"],
             "@validators/*": ["app/validators/*"]
         }
     }

@@ -67,7 +67,7 @@ config.headers['Authorization'] = _encode();
    └─validators         // 校验规则定义
 ├─core                  // 基础核心工具配置
 ├─doc                   // 接口文档
-├─middlewares           // 中间件
+├─middleware           // 中间件
 ├─prisma                // 模型定义
 ├─app.js                // 主入口
 └─...

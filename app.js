@@ -6,7 +6,7 @@ const parser = require('koa-bodyparser');
 const cors = require('@koa/cors');
 const ratelimit = require('koa-ratelimit');
 const InitManager = require('@core/init');
-const errorConf = require('@middlewares/exception');
+const errorConf = require('@middleware/exception');
 const dotenv = require('dotenv');
 const {createServer} = require('http');
 

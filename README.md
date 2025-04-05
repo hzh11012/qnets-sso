@@ -67,7 +67,7 @@ Please refer to the specific interfaces of each module for details [API Document
    └─validators
 ├─core
 ├─doc
-├─middlewares
+├─middleware
 ├─prisma
 ├─app.js
 └─...

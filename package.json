@@ -42,7 +42,7 @@
         "@": ".",
         "@app": "app",
         "@core": "core",
-        "@middlewares": "middlewares",
+        "@middleware": "middleware",
         "@api": "app/api",
         "@dao": "app/dao",
         "@service": "app/service",
