@@ -1,4 +1,5 @@
 const prisma = require('@core/prisma');
+const {HttpException} = require('@core/http-exception');
 
 class AccountDao {
     static async findOrCreate(phone) {
@@ -15,7 +16,7 @@ class AccountDao {
 
             return [null, newAccount];
         } catch (err) {
-            return [err, null];
+            return [new HttpException(), null];
         }
     }
 }

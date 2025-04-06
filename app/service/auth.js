@@ -14,7 +14,7 @@ class AuthService {
         await SmsManager.delCode(phone);
 
         const [err, account] = await AccountDao.findOrCreate(phone);
-        if (err) throw new HttpException();
+        if (err) throw err;
 
         const tokens = await this.generateTokens(account, ctx.ip);
         CookieHelper.setTokens(ctx, tokens);
@@ -69,7 +69,6 @@ class AuthService {
             )
                 throw new AuthFailed('无效令牌');
 
-                
             const tokens = await this.generateTokens(decode, ctx.ip);
             CookieHelper.setTokens(ctx, tokens);
         } catch (err) {
@@ -86,4 +85,4 @@ class AuthService {
     }
 }
 
-module.exports =  AuthService;
+module.exports = AuthService;
