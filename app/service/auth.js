@@ -72,7 +72,6 @@ class AuthService {
             const tokens = await this.generateTokens(decode, ctx.ip);
             CookieHelper.setTokens(ctx, tokens);
         } catch (err) {
-            console.log(err);
             if (err.name === 'TokenExpiredError')
                 throw new AuthFailed('令牌已过期');
 

@@ -51,7 +51,7 @@ router.post('/verify', ctx => {
 
 // 退出登录
 router.post('/logout', ctx => {
-    authService.logout(token);
+    authService.logout(ctx);
 
     ctx.response.status = 200;
     ctx.body = res.success('退出登录成功');
