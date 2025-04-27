@@ -67,7 +67,7 @@ config.headers['Authorization'] = _encode();
    └─validators         // 校验规则定义
 ├─core                  // 基础核心工具配置
 ├─doc                   // 接口文档
-├─middleware           // 中间件
+├─middleware            // 中间件
 ├─prisma                // 模型定义
 ├─app.js                // 主入口
 └─...
@@ -87,12 +87,10 @@ config.headers['Authorization'] = _encode();
 - <code>REFRESH_TOKEN_SECRET_KEY</code>：刷新令牌密钥
 - <code>ACCESS_TOKEN_EXPIRES_IN</code>：访问令牌过期时间，默认 <code>1小时</code>
 - <code>REFRESH_TOKEN_EXPIRES_IN</code>：刷新令牌过期时间，默认 <code>7天</code>
-- <code>SMS_APP_ID</code>：腾讯云短信应用 ID
-- <code>SMS_SIGN_NAME</code>：腾讯云短信签名内容
-- <code>SMS_TEMPLATE_ID</code>：腾讯云短信模板 ID
-- <code>SMS_SECRET_ID</code>：腾讯云短信 SecretId
-- <code>SMS_SECRET_KEY</code>：腾讯云短信 SecretKey
-- <code>SMS_REGION</code>：腾讯云短信 Region
+- <code>SMTP_HOST</code>：邮箱发送服务地址，默认 <code>smtp.qq.com</code>
+- <code>SMTP_PORT</code>：邮箱发送服务端口，默认 <code>465</code>
+- <code>SMTP_USER</code>：邮箱发送服务账号
+- <code>SMTP_PASS</code>：邮箱发送服务密钥
 - <code>COOKIES_DOMAIN</code>：Cookie的有效域
 
 ## 快速开始

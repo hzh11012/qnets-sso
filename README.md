@@ -87,12 +87,10 @@ Please refer to the specific interfaces of each module for details [API Document
 - <code>REFRESH_TOKEN_SECRET_KEY</code>：Refresh token secret key
 - <code>ACCESS_TOKEN_EXPIRES_IN</code>：Access token expiration time, default <code>1 hour</code>
 - <code>REFRESH_TOKEN_EXPIRES_IN</code>：Refresh token expiration time, default <code>7 day</code>
-- <code>SMS_APP_ID</code>：Tencent Cloud SMS Application ID
-- <code>SMS_SIGN_NAME</code>：Tencent Cloud SMS Signature Content
-- <code>SMS_TEMPLATE_ID</code>：Tencent Cloud SMS Template ID
-- <code>SMS_SECRET_ID</code>：Tencent Cloud SMS SecretId
-- <code>SMS_SECRET_KEY</code>：Tencent Cloud SMS SecretKey
-- <code>SMS_REGION</code>：Tencent Cloud SMS Region
+- <code>SMTP_HOST</code>：Email service host, default <code>smtp.qq.com</code>
+- <code>SMTP_PORT</code>：Email service port, default <code>465</code>
+- <code>SMTP_USER</code>：Email service account
+- <code>SMTP_PASS</code>：Email service secret key
 - <code>COOKIES_DOMAIN</code>：The effective domain of cookies
 
 ## Quick Start
