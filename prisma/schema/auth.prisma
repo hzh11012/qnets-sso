@@ -1,7 +1,7 @@
 // 账户表
 model Account {
     id     String   @id @default(ulid())
-    phone  String   @unique @db.VarChar(11)
+    email  String   @unique
 
     createdAt DateTime @default(now())
 }

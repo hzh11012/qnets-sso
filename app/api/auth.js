@@ -1,7 +1,7 @@
 const Router = require('koa-router');
-const {LoginValidator, PhoneValidator} = require('@validators/sso');
+const {LoginValidator, EmailValidator} = require('@validators/sso');
 const {Resolve} = require('@core/http-exception');
-const smsService = require('@service/sms');
+const emailService = require('@service/email');
 const authService = require('@service/auth');
 const res = new Resolve();
 
@@ -9,21 +9,21 @@ const router = new Router({
     prefix: '/api/sso'
 });
 
-// 获取短信验证码
+// 获取邮箱验证码
 router.post('/code', async ctx => {
-    const {phone} = PhoneValidator(ctx.request.body);
+    const {email} = EmailValidator(ctx.request.body);
 
-    await smsService.sendCode(phone);
+    await emailService.sendCode(email);
 
     ctx.response.status = 200;
     ctx.body = res.success('验证码发送成功');
 });
 
 // 登录
-router.post('/login', async ctx => {
-    const {phone, code} = LoginValidator(ctx.request.body);
+router.post('/email', async ctx => {
+    const {email, code} = LoginValidator(ctx.request.body);
 
-    await authService.login(phone, code, ctx);
+    await authService.login(email, code, ctx);
 
     ctx.response.status = 200;
     ctx.body = res.success('登录成功');

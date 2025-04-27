@@ -1,5 +1,5 @@
-const SmsManager = require('@core/sms');
-const {HttpException, AuthFailed, Forbidden} = require('@core/http-exception');
+const EmailManager = require('@core/email');
+const {AuthFailed, Forbidden} = require('@core/http-exception');
 const AccountDao = require('@dao/account');
 const CookieHelper = require('@core/cookie');
 const {generateToken, parseTime} = require('@core/utils');
@@ -7,13 +7,13 @@ const jwt = require('jsonwebtoken');
 const redis = require('@core/redis');
 
 class AuthService {
-    static async login(phone, code, ctx) {
-        const verifyRes = await SmsManager.verifyCode(phone, code);
+    static async login(email, code, ctx) {
+        const verifyRes = await EmailManager.verifyCode(email, code);
         if (!verifyRes) throw new AuthFailed('验证码错误');
-        // 验证后清楚验证码
-        await SmsManager.delCode(phone);
+        // 验证后清除验证码
+        await EmailManager.delCode(email);
 
-        const [err, account] = await AccountDao.findOrCreate(phone);
+        const [err, account] = await AccountDao.findOrCreate(email);
         if (err) throw err;
 
         const tokens = await this.generateTokens(account, ctx.ip);
@@ -23,12 +23,12 @@ class AuthService {
     }
 
     static async generateTokens(account, ip) {
-        const {id, phone} = account;
-        const accessToken = generateToken({id, phone});
-        const refreshToken = generateToken({id, phone, ip}, true);
+        const {id, email} = account;
+        const accessToken = generateToken({id, email});
+        const refreshToken = generateToken({id, email, ip}, true);
 
         await redis.set(
-            `refresh_token:${phone}`,
+            `refresh_token:${email}`,
             refreshToken,
             parseTime(process.env.REFRESH_TOKEN_EXPIRES_IN) / 1000
         );
@@ -60,7 +60,7 @@ class AuthService {
                 token.replace('Bearer ', ''),
                 process.env.REFRESH_TOKEN_SECRET_KEY
             );
-            const _token = await redis.get(`refresh_token:${decode.phone}`);
+            const _token = await redis.get(`refresh_token:${decode.email}`);
 
             if (
                 !_token ||

@@ -2,16 +2,16 @@ const prisma = require('@core/prisma');
 const {HttpException} = require('@core/http-exception');
 
 class AccountDao {
-    static async findOrCreate(phone) {
+    static async findOrCreate(email) {
         try {
             const account = await prisma.account.findUnique({
-                where: {phone}
+                where: {email}
             });
 
             if (account) return [null, account];
 
             const newAccount = await prisma.account.create({
-                data: {phone}
+                data: {email}
             });
 
             return [null, newAccount];

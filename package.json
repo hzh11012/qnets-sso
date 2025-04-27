@@ -9,6 +9,9 @@
         "lint": "eslint --fix .",
         "lint:fix": "prettier --write ."
     },
+    "prisma": {
+        "schema": "prisma/schema"
+    },
     "keywords": [
         "qnets-sso",
         "koa2 prisma",
@@ -34,8 +37,8 @@
         "koa-ratelimit": "^5.1.0",
         "koa-router": "^13.0.1",
         "module-alias": "^2.2.3",
+        "nodemailer": "^6.10.1",
         "require-directory": "^2.1.1",
-        "tencentcloud-sdk-nodejs": "^4.0.1030",
         "zod": "^3.24.2"
     },
     "_moduleAliases": {
