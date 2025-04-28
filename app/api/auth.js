@@ -20,7 +20,7 @@ router.post('/code', async ctx => {
 });
 
 // 登录
-router.post('/email', async ctx => {
+router.post('/login', async ctx => {
     const {email, code} = LoginValidator(ctx.request.body);
 
     await authService.login(email, code, ctx);
