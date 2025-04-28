@@ -44,7 +44,7 @@ const EmailValidator = parameter => {
             .min(1, {
                 message: '邮箱不能为空'
             })
-            .min(255, {
+            .max(255, {
                 message: '邮箱长度超出限制'
             })
             .email('邮箱格式错误')
